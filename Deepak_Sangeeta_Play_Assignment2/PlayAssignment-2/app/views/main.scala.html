@@ -1,0 +1,76 @@
+@(title: String)(content: Html)
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <title>@title</title>
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+    <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
+    <script src="@routes.Assets.versioned("javascripts/hello.js")" type="text/javascript"></script>
+
+        <link rel='stylesheet' href='@routes.WebJarAssets.at(WebJarAssets.locate("css/bootstrap.min.css"))'>
+        <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("jquery.min.js"))'></script>
+
+    <style>
+        header{
+        background-color : #4E004E;
+        padding-top:10px;
+        padding-bottom:10px;
+        padding-left: 20px;
+        color:white;
+        }
+
+        #footer{
+        background-color : #4E004E;
+        color:white;
+        padding-top:10px;
+        padding-bottom:10px;
+        padding-left: 20px;
+margin-bottom:10px;
+        }
+    </style>
+
+</head>
+<body >
+
+<!-- ~~~~~~~~~~~~~~~~~ BOOTSTRAP CONTAINER STARTED ~~~~~~~~~~~~~~~~~~~ -->
+<div class="container-fluid">
+
+    <!--    ~~~~~~~~~~~~~~~~~~  Header STARTED  ~~~~~~~~~~~~~~~  -->
+        <header>
+                 <h3>   Play Framework Assignment </h3>
+        </header>
+        <!--   ~~~~~~~~~~~~~~~~~  Header ENDED  ~~~~~~~~~~~~~~~~  -->
+
+
+    <!--   ~~~~~~~~~~~~~~~~~ Content of Page ~~~~~~~~~~~~~~~~~~  -->
+    <div>
+        <div class="row">
+
+            <div style="text-align:center;">
+                @content
+            </div>
+
+        </div>
+    </div>
+    <!-- ~~~~~~~~~~~~~~~~~~~~~Content ended ~~~~~~~~~~~~~~~~~~ -->
+
+    <div id="footer">
+        <div class="row">
+            <div class="col-md-8">
+         Employee Portal
+            </div>
+            <div class="col-md-4">
+            &copy; 2016 Play-App.
+            </div>
+            </div>
+    </div>
+</div>
+
+<!-- ~~~~~~~~~~~~~~~~ BOOTSRAP CONTAINER ENDED ~~~~~~~~~~~~~~~~~~ -->
+</body>
+
+
+</html>
+

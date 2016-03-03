@@ -1,0 +1,78 @@
+@(listOfEmployee:List[Model.EmployeeData],searchForm:Form[Model.SearchEmployee])(implicit flash:Flash,messages:Messages)
+@import b3.vertical.fieldConstructor
+
+@main("listemployee"){
+<style>
+    td{
+    text-align:left;
+    }
+</style>
+<div class="container">
+
+    <!--   ~~~~~~~~~~~~ Search Employee ~~~~~~~~~~~~~~~~~~~~ -->
+
+    <div class="row" style="margin-top:10px;">
+
+        @b3.form(routes.EmployeeController.searchByName) {
+        <div class="col-md-4 col-md-offset-4">
+        @b3.text( searchForm("employeeName"), '_info ->"Required", 'placeholder -> "Search By Name" )
+        @b3.submit('class -> "btn btn-default"){ Search }
+        </div>
+
+        }
+
+        </div>
+
+
+
+    <!-- ~~~~~~~~~~~~~~ Displaying No. Of Records ~~~~~~~~~~~~~~~~~~~ -->
+    <div>
+        <div class="row">
+            <div class="col-md-10">
+            <B><h3 style="color:#2E9AFE;">Total Number of Records : @listOfEmployee.length</h3></B>
+                </div>
+            <div class="col-md-2">
+                @b3.form(routes.EmployeeController.renderEmployeeForm) {
+                @b3.submit('class -> "btn btn-success" ){ Add Employee }
+                }
+            </div>
+        </div>
+
+        <!-- ~~~~~~~~~~~~~~ Displaying Flash Message ~~~~~~~~~~~~~~~ -->
+
+        <div>
+            @if(flash.get("success").isDefined){
+            <div class="alert alert-success">
+                <strong>@flash.get("success")</strong>
+            </div>
+            }
+        </div>
+    </div>
+    <h4>Employee Records</h4>
+
+    <!-- Listing table rows -->
+    <table class="table">
+        <thead>
+
+        <tr>
+            <th>Name</th><th>Address</th><th>DOB</th><th>Joining Date</th><th>Designation</th>
+        </tr>
+
+        </thead>
+        <tbody>
+        <!-- ~~~~~~~~~~ Iterating through list of employees ~~~~~~~~ -->
+        @for(emp <- listOfEmployee){
+
+        <tr>
+            <td><a href="@routes.EmployeeController.displayRecord(emp.name)">@emp.name</a></td>
+            <td>@emp.address</td>
+            <td>@emp.dob</td>
+            <td>@emp.joiningDate</td>
+            <td>@emp.designation</td>
+        </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+}

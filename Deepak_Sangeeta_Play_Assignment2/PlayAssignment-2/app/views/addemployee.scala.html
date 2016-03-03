@@ -1,0 +1,28 @@
+@(addEmpForm:Form[Model.EmployeeData])(implicit flash:Flash,messages:Messages)
+@import b3.vertical.fieldConstructor
+
+@main("addemployee"){
+
+<div>
+    @if(flash.get("error").isDefined){
+    <div class="alert alert-danger">
+        <strong>@flash.get("error")</strong>
+    </div>
+    }
+</div>
+
+<div class="row">
+    <div class="col-md-4 col-md-offset-4" >
+@b3.form(routes.EmployeeController.addEmployees) {
+
+@b3.text( addEmpForm("employeeName"), '_label -> "Name", '_help ->"Required", 'placeholder -> "Enter Name" )
+@b3.text( addEmpForm("employeeAddress"), '_label -> "Address", 'placeholder -> "Enter Address" )
+@b3.date( addEmpForm("employeeDOB"), '_label -> "DOB", 'placeholder -> "Enter Date of Birth" )
+@b3.date( addEmpForm("employeeJoinDate"), '_label -> "Joining Date", 'placeholder -> "Enter Date of Joining" )
+@b3.text( addEmpForm("employeeDesignation"), '_label -> "Designation", 'placeholder -> "Enter Designation" )
+@b3.submit('class -> "btn btn-default"){ AddEmployee }
+
+}
+    </div>
+</div>
+}

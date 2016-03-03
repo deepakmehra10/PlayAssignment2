@@ -1,0 +1,40 @@
+@(emp:Model.EmployeeData,addEmpForm:Form[Model.EmployeeData])(implicit flash:Flash,messages:Messages)
+@import b3.vertical.fieldConstructor
+
+@main("updateemployee"){
+
+<div>
+    @if(flash.get("error").isDefined){
+    <div class="alert alert-danger">
+        <strong>@flash.get("error")</strong>
+    </div>
+    }
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2> Update the record </h2>
+    </div>
+    <div class="col-md-3 col-md-offset-5">
+        @b3.form(routes.EmployeeController.deleteEmployee(emp.name)) {
+        @b3.submit('class -> "btn btn-danger"){ Delete Employee }
+        }
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-4 col-md-offset-4" >
+        @b3.form(routes.EmployeeController.updateEmployee(emp.name)) {
+
+        @b3.text( addEmpForm("employeeName"), '_label -> "Name", '_help ->"Required", 'value -> emp.name )
+        @b3.text( addEmpForm("employeeAddress"), '_label -> "Address", 'value -> emp.address )
+        @b3.date( addEmpForm("employeeDOB"), '_label -> "DOB", 'value -> emp.dob )
+        @b3.date( addEmpForm("employeeJoinDate"), '_label -> "Joining Date", 'value -> emp.joiningDate )
+        @b3.text( addEmpForm("employeeDesignation"), '_label -> "Designation", 'value -> emp.designation )
+        @b3.submit('class -> "btn btn-default"){ Update Employee }
+
+        }
+    </div>
+</div>
+}
